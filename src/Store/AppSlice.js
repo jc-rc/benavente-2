@@ -15,6 +15,7 @@ const initialState = {
     dummyU: 0,
     dummyC: 0,
     dummyV: 0,
+    fechaClick: "null"
 }
 
 
@@ -65,11 +66,14 @@ export const appSlice = createSlice(
             setDummyV : (state, action)=>{
                 state.dummyV +=1
             },
+            setFechaClick : (state, action)=>{
+                state.fechaClick = action.payload
+            },
             
         }
     }
 )
 
-export const {setUsuarios, setCitas, setVentas,setPacientes, setMédicos, setSTermUsuarios, setSTermCitas, setSTermVentas, setViewUsuario, setViewCita, setViewVenta, setDummyU, setDummyC, setDummyV} = appSlice.actions
+export const {setUsuarios, setCitas, setVentas,setPacientes, setMédicos, setSTermUsuarios, setSTermCitas, setSTermVentas, setViewUsuario, setViewCita, setViewVenta, setDummyU, setDummyC, setDummyV, setFechaClick} = appSlice.actions
 
 export default appSlice.reducer

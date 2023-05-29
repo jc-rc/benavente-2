@@ -33,3 +33,30 @@
   background-color: #0d6efd!important;
   color: #fff!important;
 }
+
+.fc-daygrid-day-frame:hover{
+  cursor: copy;
+}
+.fc-event-main-frame:hover{
+  cursor: zoom-in;
+}
+
+.fc-daygrid-day-number{
+  font-size: 12px;
+  text-decoration: none;
+  padding: 0 0 0 0 important;
+}
+
+.fc-daygrid-day-top{
+  margin: 0;
+  padding: 0;
+}
+
+.fc-col-header-cell-cushion{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.fc{
+  font-size: .875rem;
+}

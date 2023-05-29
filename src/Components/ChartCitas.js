@@ -9,29 +9,40 @@ import { Offcanvas } from 'bootstrap'
 
 
 import { useDispatch } from 'react-redux'
-import { setViewCita } from "../Store/AppSlice"
+import { setViewCita, setFechaClick } from "../Store/AppSlice"
 
 function ChartCitas(props) {
 
     const dispatch = useDispatch()
     const myOffcanvas = new Offcanvas("#offcanvas-cita")
 
-    const handleEventClick = (e)=>{
-        dispatch(setViewCita(e.event._def.extendedProps))
+    const handleEventClick = (e) => {
+
         
-        myOffcanvas.show()
+
+            dispatch(setViewCita(e.event._def.extendedProps))
+
+            myOffcanvas.show()
+        
+
 
     }
-    const handleDateClick = ()=>{}
+    const handleDateClick = (e) => {
+
+        if (props.user.role !== "PACIENTE") {
+            dispatch(setFechaClick(e.dateStr))
+            document.querySelector(".btn-create-cita").click()
+        }
+    }
 
     return (
         <div>
             <FullCalendar
-            headerToolbar={{
-                center: "prev,dayGridMonth,timeGridWeek,timeGridDay,next",
-                right: "today"
-            }}
-            height={600}
+                headerToolbar={{
+                    center: "prev,dayGridMonth,timeGridWeek,timeGridDay,next",
+                    right: "today"
+                }}
+                height={600}
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 weekends={true}
@@ -47,7 +58,7 @@ function ChartCitas(props) {
                 buttonText={
                     { today: "HOY", month: "MES", week: "SEMANA", day: "DíA" }
                 }
-                nowIndicator = "true"
+                nowIndicator="true"
                 events={props.citas.map((cita) => {
 
                     let colorBadge = ""
@@ -86,6 +97,7 @@ function ChartCitas(props) {
                             consultorio: cita.consultorio,
                             status: cita.status,
                             _id: cita._id,
+                            username: cita.username,
                             allDay: false,
                             display: "block",
                             className: ` px-1 text-bg-${colorBadge} border rounded `,
@@ -93,7 +105,7 @@ function ChartCitas(props) {
                     )
                 })}
                 eventClick={handleEventClick}
-                dateClick = {handleDateClick} />
+                dateClick={handleDateClick} />
         </div>
     )
 }

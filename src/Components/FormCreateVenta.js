@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setDummyV } from '../Store/AppSlice'
+import { setDummyU, setDummyV } from '../Store/AppSlice'
 
 function FormCreateVenta() {
 
@@ -66,7 +66,7 @@ function FormCreateVenta() {
         switch (e.target.value) {
 
             case "directo":
-                let puntosCalc = Number(form.venta) * Number(multiplicador)
+                let puntosCalc = (Number(form.venta) * Number(multiplicador)).toFixed(2)
                 console.log(form.venta, multiplicador);
                 setForm({ ...form, pago: e.target.value, total: form.venta, puntos: puntosCalc })
                 break;
@@ -132,8 +132,11 @@ function FormCreateVenta() {
                                 <input type="datetime-local" className="form-control" onChange={handleFechaHora} required />
                             </div>
                             <div className="col-12 mb-3">
-                                <label htmlFor="">Venta: ($)</label>
-                                <input type="text" className="form-control" onChange={handleVenta} required />
+                                <label htmlFor="">Venta:</label>
+                                <div className="input-group">
+                                    <span className="input-group-text">$</span>
+                                    <input type="text" className="form-control" onChange={handleVenta} required pattern='[0-9.]+' title='< Solo dígitos. >' />
+                                    </div>
                             </div>
                             <div className="col-9 mb-3">
                                 <label htmlFor="">Paciente:</label>

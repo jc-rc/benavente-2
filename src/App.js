@@ -5,6 +5,7 @@ import ViewPaciente from './Components/ViewPaciente';
 import DetailUser from './Components/DetailUser';
 import DetailCita from './Components/DetailCita';
 import DetailVenta from './Components/DetailVenta';
+import FormChangePW from './Components/FormChangePW';
 
 function App() {
 
@@ -46,21 +47,22 @@ function App() {
 
 
   return (
-    <div className="container-fluid p-3"   style={{ maxWidth: 1600}}>
+    <div className="container-fluid p-3" style={{maxWidth: 1333}}>
       
 
       {/* LOGIN PAGE */}
       {!currentUser && <div className="container  border p-4 rounded" style={{ maxWidth: 400 }}>
         <div className="row">
           <form action="" onSubmit={handleSubmit}>
-            <div className="col-12">
-              <p className="h1 m-0"> <img src="https://www.benaventedental.com.mx/assets/images/logo.svg" className='image-fluid' width={40} height={40} alt="" /> Benavente</p>
-              <p className="small mb-3 fst-italic">Plataforma de Control de Citas</p>
+            <div className="col-12 ">
+              <p className="h1 m-0"> <img src="./logoBena_80.svg" className='image-fluid' width={40} height={40} alt="" /> Benavente</p>
+              <p className="small mb-3 fst-italic">Plataforma para el Control de Citas</p>
               <hr />
-              <p className="h4 mb-3">Iniciar Sesión:</p>
+              
             </div>
             <div className='col-12'>
-              <label className='form-label' htmlFor="">Usuario</label>
+            <p className="h4 mb-3">Iniciar Sesión:</p>
+              <label className='form-label' htmlFor="">Usuario / Correo</label>
               <input className='form-control mb-3' type="text" name="" onChange={handleUsernameChange} required value={user.username} />
             </div>
             <div className='col-12'>
@@ -74,6 +76,11 @@ function App() {
 
             <button className='btn btn-primary col-12 mt-3'>Ingresar</button>
           </form>
+
+          <div className="col-12 mt-4">
+            <a className="small m-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-change-pw" style={{cursor: "pointer"}}>Cambiar Contraseña</a>
+            <p className="small m-0">¿Problemas para ingresar? <a href="tel:+527772662884">Llámanos</a></p>
+          </div>
         </div>
 
       </div>}
@@ -86,8 +93,9 @@ function App() {
 
       {/* OFFCANVAS */}
       { <DetailUser />}
-      { <DetailCita />}
+      { <DetailCita user={currentUser}/>}
       { <DetailVenta />}
+      <FormChangePW />
 
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { setDummyU } from '../Store/AppSlice'
-
+import FormEditUser from './FormEditUser'
 
 function DetailUser() {
 
@@ -91,18 +91,21 @@ function DetailUser() {
                             <dd className='col-6'><span className={`badge text-bg-${nivelColor}`}>Nivel {usuario.nivelReward}</span></dd>
 
                             <dt className='col-6'>Puntos:</dt>
-                            <dd className='col-6 fw-bold mb-3'>{usuario.puntos}</dd>
+                            <dd className='col-6 fw-bold mb-3'>{Number(usuario.puntos).toFixed(2)}</dd>
 
                         </div>
 
                         <div className="card-footer bg-body pt-3 d-flex justify-content-evenly">
-                            <button className="btn btn-sm btn-outline-danger" onClick={()=>handleDeleteUser(usuario._id)}><i className="fa-solid fa-trash me-2"></i>Borrar</button>
-                            <button className="btn btn-sm btn-outline-secondary"><i className="fa-solid fa-pencil me-2"></i>Editar</button>
+                            {/* <button className="btn btn-sm btn-outline-danger" onClick={()=>handleDeleteUser(usuario._id)}><i className="fa-solid fa-trash me-2"></i>Borrar</button> */}
+                            <button className="btn btn-sm btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-edit-user"><i className="fa-solid fa-pencil me-2"></i>Editar</button>
                         </div>
 
                     </div>
                 </div>}
             </div>
+
+            {/* OFFCANVAS UPDATE USER */}
+            <FormEditUser usuario={usuario} />
             
         </div>
     )
